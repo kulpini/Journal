@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -48,6 +49,9 @@
             this.TermDataGrid = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.AddTermButton = new System.Windows.Forms.Button();
+            this.DeleteTermButton = new System.Windows.Forms.Button();
+            this.EditTermButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -192,6 +196,7 @@
             this.EditStudentButton.TabIndex = 3;
             this.EditStudentButton.Text = "Редагувати студента";
             this.EditStudentButton.UseVisualStyleBackColor = true;
+            this.EditStudentButton.Click += new System.EventHandler(this.EditStudentButton_Click);
             // 
             // DeleteStudentButton
             // 
@@ -204,6 +209,7 @@
             this.DeleteStudentButton.TabIndex = 2;
             this.DeleteStudentButton.Text = "Видалити студента";
             this.DeleteStudentButton.UseVisualStyleBackColor = true;
+            this.DeleteStudentButton.Click += new System.EventHandler(this.DeleteStudentButton_Click);
             // 
             // AddStudentButton
             // 
@@ -225,53 +231,100 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(797, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(369, 495);
+            this.panel3.Size = new System.Drawing.Size(250, 495);
             this.panel3.TabIndex = 3;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.TermDataGrid);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(0, 50);
+            this.panel7.Location = new System.Drawing.Point(0, 61);
             this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.panel7.Size = new System.Drawing.Size(369, 445);
+            this.panel7.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
+            this.panel7.Size = new System.Drawing.Size(250, 434);
             this.panel7.TabIndex = 8;
             // 
             // TermDataGrid
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TermDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.TermDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TermDataGrid.ColumnHeadersVisible = false;
             this.TermDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TermDataGrid.Location = new System.Drawing.Point(10, 10);
+            this.TermDataGrid.Location = new System.Drawing.Point(10, 5);
             this.TermDataGrid.Name = "TermDataGrid";
             this.TermDataGrid.RowHeadersWidth = 51;
-            this.TermDataGrid.Size = new System.Drawing.Size(349, 425);
+            this.TermDataGrid.Size = new System.Drawing.Size(230, 419);
             this.TermDataGrid.TabIndex = 7;
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.EditTermButton);
+            this.panel6.Controls.Add(this.DeleteTermButton);
+            this.panel6.Controls.Add(this.AddTermButton);
             this.panel6.Controls.Add(this.label2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(369, 50);
+            this.panel6.Size = new System.Drawing.Size(250, 61);
             this.panel6.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(7, 18);
+            this.label2.Location = new System.Drawing.Point(7, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(214, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Перелiк навчальних семестрiв";
             // 
+            // AddTermButton
+            // 
+            this.AddTermButton.FlatAppearance.BorderSize = 0;
+            this.AddTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddTermButton.Image = ((System.Drawing.Image)(resources.GetObject("AddTermButton.Image")));
+            this.AddTermButton.Location = new System.Drawing.Point(14, 30);
+            this.AddTermButton.Name = "AddTermButton";
+            this.AddTermButton.Size = new System.Drawing.Size(28, 28);
+            this.AddTermButton.TabIndex = 7;
+            this.AddTermButton.UseVisualStyleBackColor = true;
+            // 
+            // DeleteTermButton
+            // 
+            this.DeleteTermButton.FlatAppearance.BorderSize = 0;
+            this.DeleteTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteTermButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteTermButton.Image")));
+            this.DeleteTermButton.Location = new System.Drawing.Point(48, 30);
+            this.DeleteTermButton.Name = "DeleteTermButton";
+            this.DeleteTermButton.Size = new System.Drawing.Size(28, 28);
+            this.DeleteTermButton.TabIndex = 8;
+            this.DeleteTermButton.UseVisualStyleBackColor = true;
+            this.DeleteTermButton.Click += new System.EventHandler(this.DeleteTermButton_Click);
+            // 
+            // EditTermButton
+            // 
+            this.EditTermButton.FlatAppearance.BorderSize = 0;
+            this.EditTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditTermButton.Image = ((System.Drawing.Image)(resources.GetObject("EditTermButton.Image")));
+            this.EditTermButton.Location = new System.Drawing.Point(82, 30);
+            this.EditTermButton.Name = "EditTermButton";
+            this.EditTermButton.Size = new System.Drawing.Size(28, 28);
+            this.EditTermButton.TabIndex = 9;
+            this.EditTermButton.UseVisualStyleBackColor = true;
+            this.EditTermButton.Click += new System.EventHandler(this.EditTermButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1168, 495);
+            this.ClientSize = new System.Drawing.Size(1050, 495);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -317,6 +370,9 @@
         private System.Windows.Forms.DataGridView TermDataGrid;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button EditTermButton;
+        private System.Windows.Forms.Button DeleteTermButton;
+        private System.Windows.Forms.Button AddTermButton;
     }
 }
 

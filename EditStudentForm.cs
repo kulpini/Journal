@@ -19,16 +19,14 @@ namespace journal
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-        //    DialogResult result = MessageBox.Show(
-        //"Окрасить кнопку в красный цвет?",
-        //"Сообщение",
-        //MessageBoxButtons.YesNo,
-        //MessageBoxIcon.Information,
-        //MessageBoxDefaultButton.Button1,
-        //MessageBoxOptions.DefaultDesktopOnly);
+            DialogResult result = MessageBox.Show("Ви дiйсно бажаєте видалити обраного студента?", "Увага!", MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+                this.DialogResult = DialogResult.Yes;
+        }
 
-        //    if (result == DialogResult.Yes)
-        //        button1.BackColor = Color.Red;
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
         }
     }
 }
