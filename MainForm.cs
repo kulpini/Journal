@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,8 @@ namespace journal
     {
         static string pathToDb = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "journal.mdb");
         public string ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pathToDb;
+        public string activeTable = "term";
+
         public MainForm()
         {
             InitializeComponent();
@@ -34,14 +37,38 @@ namespace journal
 
         private void ShowTerms()
         {
-            string CommandText = "SELECT * FROM terms";
+            string CommandText = "SELECT * FROM term";
             OleDbDataAdapter dataAdapter = new OleDbDataAdapter(CommandText, ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
             DataSet ds = new DataSet();  // создаем объект DataSet
-            dataAdapter.Fill(ds, "term"); // заполняем таблицу Books данными из базы данных 
-            TermDataGrid.DataSource = ds.Tables["term"].DefaultView;   // выводим данные о студентах в DataGrid на форме
+            dataAdapter.Fill(ds, "term"); // заполняем таблицу данными из базы данных 
+            TermDataGrid.DataSource = ds.Tables["term"].DefaultView;   // выводим данные в DataGrid на форме
             TermDataGrid.Columns["ID"].Visible = false; // 
             TermDataGrid.Columns["TermName"].HeaderText = "Назва семестру"; // задаём Наменование столбца
             TermDataGrid.Columns["TermName"].Width = 200;  // ширина столбца
+        }
+
+        private void ShowSubjects()
+        {
+            string CommandText = "SELECT * FROM subject ORDER BY SubjectName";
+            OleDbDataAdapter dataAdapter = new OleDbDataAdapter(CommandText, ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
+            DataSet ds = new DataSet();  // создаем объект DataSet
+            dataAdapter.Fill(ds, "subject"); // заполняем таблицу Books данными из базы данных 
+            TermDataGrid.DataSource = ds.Tables["subject"].DefaultView;   // выводим данные о студентах в DataGrid на форме
+            TermDataGrid.Columns["ID"].Visible = false; // 
+            TermDataGrid.Columns["SubjectName"].HeaderText = "Назва дiсциплiни"; // задаём Наменование столбца
+            TermDataGrid.Columns["SubjectName"].Width = 200;  // ширина столбца
+        }
+
+        private void ShowFilter(string commandText)
+        {
+            string fieldName = activeTable == "term" ? "TermName" : "SubjectName";
+            OleDbDataAdapter dataAdapter = new OleDbDataAdapter(commandText, ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
+            DataSet ds = new DataSet();  // создаем объект DataSet
+            dataAdapter.Fill(ds, activeTable); // заполняем таблицу данными из базы данных 
+            TermDataGrid.DataSource = ds.Tables[activeTable].DefaultView;   // выводим данные в DataGrid на форме
+            TermDataGrid.Columns["ID"].Visible = false; // 
+            TermDataGrid.Columns[fieldName].HeaderText = activeTable == "term" ? "Назва семестру" : "Назва дiсциплiни"; // Наменование столбца
+            TermDataGrid.Columns[fieldName].Width = 200;  // ширина столбца
         }
 
         private void ShowStudents(string CommandText)
@@ -51,14 +78,10 @@ namespace journal
             dataAdapter.Fill(ds, "student"); // заполняем таблицу Books данными из базы данных 
             StudentsDataGrid.DataSource = ds.Tables[0].DefaultView;   // выводим данные о студентах в DataGrid на форме
             StudentsDataGrid.Columns["ID"].Visible = false; // 
-            StudentsDataGrid.Columns["Surname"].HeaderText = "Прiзвище"; // задаём Наменование столбца
-            StudentsDataGrid.Columns["Surname"].Width = 200;  // ширина столбца 
-            StudentsDataGrid.Columns["Name"].HeaderText = "Iм`я"; // задаём Наменование столбца
-            StudentsDataGrid.Columns["Name"].Width = 200;  // ширина столбца 
-            StudentsDataGrid.Columns["Patronymic"].HeaderText = "По-батьковi"; // задаём Наменование столбца
-            StudentsDataGrid.Columns["Patronymic"].Width = 200;  // ширина столбца 
+            StudentsDataGrid.Columns["StudentName"].HeaderText = "ПIБ студента"; // задаём Наменование столбца
+            StudentsDataGrid.Columns["StudentName"].Width = 350;  // ширина столбца 
             StudentsDataGrid.Columns["RecordBook"].HeaderText = "№ залiкової"; // задаём Наменование столбца
-            StudentsDataGrid.Columns["RecordBook"].Width = 200;  // ширина столбца 
+            StudentsDataGrid.Columns["RecordBook"].Width = 150;  // ширина столбца 
         }
 
         private void AddStudentButton_Click(object sender, EventArgs e)
@@ -81,31 +104,33 @@ namespace journal
                 CommandText += "VALUES ('" + surname + "','" + name + "','" + patronymic + "','" + recordbook + "','" + phone + "','";
                 CommandText += address + "','" + Convert.ToString(birthDate) + "','" + passport + "'," + Convert.ToString(taxId) + ")";
                 ExecuteQuery(CommandText);
-                CommandText = "SELECT ID, Surname,Name,Patronymic, RecordBook FROM student";
+                CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
                 ShowStudents(CommandText);
             }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            string CommandText = "SELECT ID, Surname,Name,Patronymic, RecordBook FROM student";
+            string CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
             ShowStudents(CommandText);
             ShowTerms();
+            ShowedTableLabel.Text = "Перелiк семестрiв:";
         }
 
         private void DeleteStudent(int studentId)
         {
             string CommandText = "DELETE FROM student WHERE ID =" + Convert.ToString(studentId);
             ExecuteQuery(CommandText);
-            CommandText = "SELECT ID, Surname,Name,Patronymic, RecordBook FROM student";
+            CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
             ShowStudents(CommandText);
         }
 
         private void FindButton_Click(object sender, EventArgs e)
         {
-            string CommandText = "SELECT ID, Surname,Name,Patronymic, RecordBook FROM student";
+            string CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student";
             if (FindTextBox.Text != "")
                 CommandText += " WHERE Surname LIKE '" + FindTextBox.Text + "'";
+            CommandText += " ORDER BY Surname"; 
             ShowStudents(CommandText);
         }
 
@@ -173,30 +198,124 @@ namespace journal
             else MessageBox.Show("Не обрано жодного студента!", "Помилка!", MessageBoxButtons.OK);
         }
 
+        private void ShowButton_Click(object sender, EventArgs e)
+        {
+            if (TermsRadioButton.Checked)
+            {
+                ShowTerms();
+                activeTable = "term";
+                ShowedTableLabel.Text = "Перелiк семестрiв:";
+            }
+            else
+            {
+                ShowSubjects();
+                activeTable = "subject";
+                ShowedTableLabel.Text = "Перелiк дiсциплiн:";
+            }
+        }
+
+        private void FilterButton_Click(object sender, EventArgs e)
+        {
+            string commandText = "SELECT * FROM " + activeTable + " WHERE ";
+            commandText += activeTable == "term" ? "TermName":"SubjectName";
+            commandText += " LIKE '" + FilterTextBox.Text + "%'";
+            ShowFilter(commandText);
+        }
+
+        private void AddTermButton_Click(object sender, EventArgs e)
+        {
+            AddTermForm addForm = new AddTermForm();
+            string value = "";
+            string commandText, fieldName;
+            if (activeTable == "term")
+            {
+                addForm.Text += "семестру";
+                fieldName = "TermName";
+            }
+            else
+            {
+                addForm.Text += "дiсциплiни";
+                fieldName = "SubjectName";
+            }
+            addForm.ShowDialog();
+            if (addForm.DialogResult == DialogResult.OK)
+                value = addForm.ValueTextBox.Text;
+            commandText = "INSERT INTO " + activeTable + "(" + fieldName + ") VALUES ('" + value + "')";
+            ExecuteQuery(commandText);
+            if (activeTable == "term")
+                ShowTerms();
+            else ShowSubjects();
+        }
+
+        private void EditTermButton_Click(object sender, EventArgs e)
+        {
+            if (TermDataGrid.CurrentCell != null)
+            {
+                int index = TermDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
+                int ID = (int)TermDataGrid[0, index].Value;
+                string commandText;
+                string fieldName = activeTable == "term" ? "TermName" : "SubjectName";
+                string editingValue = Convert.ToString(TermDataGrid[1, index].Value);
+                AddTermForm editForm = new AddTermForm();
+                if (activeTable == "term")
+                    editForm.Text = "Редагування семестру";
+                else
+                    editForm.Text = "Редагування дiсциплiни";
+                editForm.ValueTextBox.Text = editingValue;
+                editForm.AddButton.Text = "Зберегти";
+                editForm.ShowDialog();
+                if (editForm.DialogResult == DialogResult.OK)
+                {
+                    commandText = "UPDATE " + activeTable + " SET " + fieldName + "=\n'" + editForm.ValueTextBox.Text + "' WHERE ID=" + Convert.ToString(ID);
+                    ExecuteQuery(commandText);
+                    if (activeTable == "term")
+                        ShowTerms();
+                    else ShowSubjects();
+                    TermDataGrid.ClearSelection();
+                    TermDataGrid[1, index].Selected = true;
+                }
+            }
+            else MessageBox.Show("Не обрано даних для редагування!", "Помилка!", MessageBoxButtons.OK);
+        }
+
         private void DeleteTermButton_Click(object sender, EventArgs e)
         {
-            if (StudentsDataGrid.CurrentCell != null)
+            if (TermDataGrid.CurrentCell != null)
             {
-                DialogResult result = MessageBox.Show("Ви дiйсно бажаєте видалити семестр? \n Видаленi данi вiдновити буде неможливо!", "Увага!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                string deletingData = activeTable == "term" ? "семестр" : "дiсциплiну";
+                DialogResult result = MessageBox.Show("Ви дiйсно бажаєте видалити " + deletingData + "?\nВидаленi данi вiдновити буде неможливо!", "Увага!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
                     int index = TermDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
                     int termID = (int)TermDataGrid[0, index].Value;
-                    string CommandText = "DELETE FROM term WHERE ID=" + Convert.ToString(termID);
-                    ShowTerms();
+                    string CommandText = "DELETE FROM " + activeTable + " WHERE ID=" + Convert.ToString(termID);
+                    ExecuteQuery(CommandText);
+                    if (activeTable == "term")
+                        ShowTerms();
+                    else ShowSubjects();
                 }
             }
-            else MessageBox.Show("Не обрано семестр зi списку!", "Помилка!", MessageBoxButtons.OK);
+            else MessageBox.Show("Не обрано жодного запису зi списку!", "Помилка!", MessageBoxButtons.OK);
         }
 
+        private void CurriculumButton_Click(object sender, EventArgs e)
+        {
+            CurriculumForm planForm = new CurriculumForm();
+            planForm.ShowDialog();
+        }
 
-        private void EditTermButton_Click(object sender, EventArgs e)
+        private void RatingsButton_Click(object sender, EventArgs e)
         {
             if (StudentsDataGrid.CurrentCell != null)
             {
-                //gbtjy
+                int index = StudentsDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
+                int ID = (int)StudentsDataGrid[0, index].Value;
+                string studentName = Convert.ToString(TermDataGrid[1, index].Value);
+                GradesForm gradeForm = new GradesForm { studentID = ID };
+                gradeForm.StudentNameLabel.Text = studentName;
+                gradeForm.ShowDialog();
             }
-            else MessageBox.Show("Не обрано семестр зi списку!", "Помилка!", MessageBoxButtons.OK);
+            else MessageBox.Show("Не обрано студента для внесення оцiнок!", "Помилка!", MessageBoxButtons.OK);
         }
     }
 }

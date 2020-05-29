@@ -46,11 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AcademicListForm.Designer.cs">
+      <DependentUpon>AcademicListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddTermForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddTermForm.Designer.cs">
+      <DependentUpon>AddTermForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CurriculumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CurriculumForm.Designer.cs">
+      <DependentUpon>CurriculumForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditStudentForm.Designer.cs">
       <DependentUpon>EditStudentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GradesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GradesForm.Designer.cs">
+      <DependentUpon>GradesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -66,8 +90,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AcademicListForm.resx">
+      <DependentUpon>AcademicListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddTermForm.resx">
+      <DependentUpon>AddTermForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurriculumForm.resx">
+      <DependentUpon>CurriculumForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditStudentForm.resx">
       <DependentUpon>EditStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GradesForm.resx">
+      <DependentUpon>GradesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

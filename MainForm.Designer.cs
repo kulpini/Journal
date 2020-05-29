@@ -38,6 +38,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.StudentsDataGrid = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.CurriculumButton = new System.Windows.Forms.Button();
             this.RatingsButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,7 +49,12 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.TermDataGrid = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ShowedTableLabel = new System.Windows.Forms.Label();
+            this.FilterButton = new System.Windows.Forms.Button();
+            this.FilterTextBox = new System.Windows.Forms.TextBox();
+            this.ShowButton = new System.Windows.Forms.Button();
+            this.SubjectsRadioButton = new System.Windows.Forms.RadioButton();
+            this.TermsRadioButton = new System.Windows.Forms.RadioButton();
             this.AddTermButton = new System.Windows.Forms.Button();
             this.DeleteTermButton = new System.Windows.Forms.Button();
             this.EditTermButton = new System.Windows.Forms.Button();
@@ -130,6 +136,7 @@
             this.StudentsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StudentsDataGrid.Location = new System.Drawing.Point(10, 80);
             this.StudentsDataGrid.Name = "StudentsDataGrid";
+            this.StudentsDataGrid.RowHeadersVisible = false;
             this.StudentsDataGrid.RowHeadersWidth = 51;
             this.StudentsDataGrid.Size = new System.Drawing.Size(519, 403);
             this.StudentsDataGrid.TabIndex = 1;
@@ -137,6 +144,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.CurriculumButton);
             this.panel2.Controls.Add(this.RatingsButton);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
@@ -146,27 +154,41 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(541, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(256, 495);
+            this.panel2.Size = new System.Drawing.Size(210, 495);
             this.panel2.TabIndex = 2;
+            // 
+            // CurriculumButton
+            // 
+            this.CurriculumButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CurriculumButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CurriculumButton.ForeColor = System.Drawing.Color.Maroon;
+            this.CurriculumButton.Location = new System.Drawing.Point(16, 405);
+            this.CurriculumButton.Name = "CurriculumButton";
+            this.CurriculumButton.Size = new System.Drawing.Size(162, 32);
+            this.CurriculumButton.TabIndex = 7;
+            this.CurriculumButton.Text = "Учбовий план...";
+            this.CurriculumButton.UseVisualStyleBackColor = true;
+            this.CurriculumButton.Click += new System.EventHandler(this.CurriculumButton_Click);
             // 
             // RatingsButton
             // 
             this.RatingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RatingsButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RatingsButton.ForeColor = System.Drawing.Color.Maroon;
-            this.RatingsButton.Location = new System.Drawing.Point(49, 450);
+            this.RatingsButton.Location = new System.Drawing.Point(16, 450);
             this.RatingsButton.Name = "RatingsButton";
             this.RatingsButton.Size = new System.Drawing.Size(162, 32);
             this.RatingsButton.TabIndex = 6;
             this.RatingsButton.Text = "Оцiнки...";
             this.RatingsButton.UseVisualStyleBackColor = true;
+            this.RatingsButton.Click += new System.EventHandler(this.RatingsButton_Click);
             // 
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.Color.Maroon;
-            this.button2.Location = new System.Drawing.Point(49, 299);
+            this.button2.Location = new System.Drawing.Point(16, 299);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(162, 27);
             this.button2.TabIndex = 5;
@@ -178,7 +200,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.ForeColor = System.Drawing.Color.Maroon;
-            this.button1.Location = new System.Drawing.Point(49, 250);
+            this.button1.Location = new System.Drawing.Point(16, 247);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(162, 27);
             this.button1.TabIndex = 4;
@@ -190,7 +212,7 @@
             this.EditStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditStudentButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.EditStudentButton.ForeColor = System.Drawing.Color.Maroon;
-            this.EditStudentButton.Location = new System.Drawing.Point(49, 175);
+            this.EditStudentButton.Location = new System.Drawing.Point(16, 175);
             this.EditStudentButton.Name = "EditStudentButton";
             this.EditStudentButton.Size = new System.Drawing.Size(162, 27);
             this.EditStudentButton.TabIndex = 3;
@@ -203,7 +225,7 @@
             this.DeleteStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteStudentButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DeleteStudentButton.ForeColor = System.Drawing.Color.Maroon;
-            this.DeleteStudentButton.Location = new System.Drawing.Point(49, 132);
+            this.DeleteStudentButton.Location = new System.Drawing.Point(16, 131);
             this.DeleteStudentButton.Name = "DeleteStudentButton";
             this.DeleteStudentButton.Size = new System.Drawing.Size(162, 27);
             this.DeleteStudentButton.TabIndex = 2;
@@ -216,7 +238,7 @@
             this.AddStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddStudentButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddStudentButton.ForeColor = System.Drawing.Color.Maroon;
-            this.AddStudentButton.Location = new System.Drawing.Point(49, 89);
+            this.AddStudentButton.Location = new System.Drawing.Point(16, 88);
             this.AddStudentButton.Name = "AddStudentButton";
             this.AddStudentButton.Size = new System.Drawing.Size(162, 27);
             this.AddStudentButton.TabIndex = 1;
@@ -229,19 +251,19 @@
             this.panel3.Controls.Add(this.panel7);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(797, 0);
+            this.panel3.Location = new System.Drawing.Point(751, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(250, 495);
+            this.panel3.Size = new System.Drawing.Size(255, 495);
             this.panel3.TabIndex = 3;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.TermDataGrid);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(0, 61);
+            this.panel7.Location = new System.Drawing.Point(0, 105);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
-            this.panel7.Size = new System.Drawing.Size(250, 434);
+            this.panel7.Size = new System.Drawing.Size(255, 390);
             this.panel7.TabIndex = 8;
             // 
             // TermDataGrid
@@ -255,56 +277,121 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.TermDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.TermDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TermDataGrid.ColumnHeadersVisible = false;
             this.TermDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TermDataGrid.Location = new System.Drawing.Point(10, 5);
             this.TermDataGrid.Name = "TermDataGrid";
+            this.TermDataGrid.RowHeadersVisible = false;
             this.TermDataGrid.RowHeadersWidth = 51;
-            this.TermDataGrid.Size = new System.Drawing.Size(230, 419);
+            this.TermDataGrid.Size = new System.Drawing.Size(235, 375);
             this.TermDataGrid.TabIndex = 7;
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.EditTermButton);
-            this.panel6.Controls.Add(this.DeleteTermButton);
-            this.panel6.Controls.Add(this.AddTermButton);
-            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.ShowedTableLabel);
+            this.panel6.Controls.Add(this.FilterButton);
+            this.panel6.Controls.Add(this.FilterTextBox);
+            this.panel6.Controls.Add(this.ShowButton);
+            this.panel6.Controls.Add(this.SubjectsRadioButton);
+            this.panel6.Controls.Add(this.TermsRadioButton);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(250, 61);
+            this.panel6.Size = new System.Drawing.Size(255, 105);
             this.panel6.TabIndex = 7;
             // 
-            // label2
+            // ShowedTableLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(7, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(214, 16);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Перелiк навчальних семестрiв";
+            this.ShowedTableLabel.AutoSize = true;
+            this.ShowedTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ShowedTableLabel.Location = new System.Drawing.Point(8, 85);
+            this.ShowedTableLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ShowedTableLabel.Name = "ShowedTableLabel";
+            this.ShowedTableLabel.Size = new System.Drawing.Size(64, 15);
+            this.ShowedTableLabel.TabIndex = 15;
+            this.ShowedTableLabel.Text = "Перелiк ";
+            // 
+            // FilterButton
+            // 
+            this.FilterButton.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FilterButton.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.FilterButton.Location = new System.Drawing.Point(170, 62);
+            this.FilterButton.Name = "FilterButton";
+            this.FilterButton.Size = new System.Drawing.Size(75, 23);
+            this.FilterButton.TabIndex = 14;
+            this.FilterButton.Text = "Знайти";
+            this.FilterButton.UseVisualStyleBackColor = true;
+            this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
+            // 
+            // FilterTextBox
+            // 
+            this.FilterTextBox.Location = new System.Drawing.Point(10, 64);
+            this.FilterTextBox.Name = "FilterTextBox";
+            this.FilterTextBox.Size = new System.Drawing.Size(154, 20);
+            this.FilterTextBox.TabIndex = 13;
+            // 
+            // ShowButton
+            // 
+            this.ShowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ShowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ShowButton.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.ShowButton.Location = new System.Drawing.Point(169, 19);
+            this.ShowButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ShowButton.Name = "ShowButton";
+            this.ShowButton.Size = new System.Drawing.Size(79, 32);
+            this.ShowButton.TabIndex = 12;
+            this.ShowButton.Text = "Вивести";
+            this.ShowButton.UseVisualStyleBackColor = true;
+            this.ShowButton.Click += new System.EventHandler(this.ShowButton_Click);
+            // 
+            // SubjectsRadioButton
+            // 
+            this.SubjectsRadioButton.AutoSize = true;
+            this.SubjectsRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SubjectsRadioButton.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.SubjectsRadioButton.Location = new System.Drawing.Point(10, 32);
+            this.SubjectsRadioButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SubjectsRadioButton.Name = "SubjectsRadioButton";
+            this.SubjectsRadioButton.Size = new System.Drawing.Size(161, 21);
+            this.SubjectsRadioButton.TabIndex = 11;
+            this.SubjectsRadioButton.Text = "Навчальнi предмети";
+            this.SubjectsRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // TermsRadioButton
+            // 
+            this.TermsRadioButton.AutoSize = true;
+            this.TermsRadioButton.Checked = true;
+            this.TermsRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TermsRadioButton.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.TermsRadioButton.Location = new System.Drawing.Point(10, 10);
+            this.TermsRadioButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TermsRadioButton.Name = "TermsRadioButton";
+            this.TermsRadioButton.Size = new System.Drawing.Size(159, 21);
+            this.TermsRadioButton.TabIndex = 10;
+            this.TermsRadioButton.TabStop = true;
+            this.TermsRadioButton.Text = "Навчальнi семестри";
+            this.TermsRadioButton.UseVisualStyleBackColor = true;
             // 
             // AddTermButton
             // 
             this.AddTermButton.FlatAppearance.BorderSize = 0;
             this.AddTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddTermButton.Image = ((System.Drawing.Image)(resources.GetObject("AddTermButton.Image")));
-            this.AddTermButton.Location = new System.Drawing.Point(14, 30);
+            this.AddTermButton.Location = new System.Drawing.Point(1005, 97);
             this.AddTermButton.Name = "AddTermButton";
             this.AddTermButton.Size = new System.Drawing.Size(28, 28);
-            this.AddTermButton.TabIndex = 7;
+            this.AddTermButton.TabIndex = 8;
             this.AddTermButton.UseVisualStyleBackColor = true;
+            this.AddTermButton.Click += new System.EventHandler(this.AddTermButton_Click);
             // 
             // DeleteTermButton
             // 
             this.DeleteTermButton.FlatAppearance.BorderSize = 0;
             this.DeleteTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteTermButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteTermButton.Image")));
-            this.DeleteTermButton.Location = new System.Drawing.Point(48, 30);
+            this.DeleteTermButton.Location = new System.Drawing.Point(1005, 143);
             this.DeleteTermButton.Name = "DeleteTermButton";
             this.DeleteTermButton.Size = new System.Drawing.Size(28, 28);
-            this.DeleteTermButton.TabIndex = 8;
+            this.DeleteTermButton.TabIndex = 9;
             this.DeleteTermButton.UseVisualStyleBackColor = true;
             this.DeleteTermButton.Click += new System.EventHandler(this.DeleteTermButton_Click);
             // 
@@ -313,10 +400,10 @@
             this.EditTermButton.FlatAppearance.BorderSize = 0;
             this.EditTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditTermButton.Image = ((System.Drawing.Image)(resources.GetObject("EditTermButton.Image")));
-            this.EditTermButton.Location = new System.Drawing.Point(82, 30);
+            this.EditTermButton.Location = new System.Drawing.Point(1005, 185);
             this.EditTermButton.Name = "EditTermButton";
             this.EditTermButton.Size = new System.Drawing.Size(28, 28);
-            this.EditTermButton.TabIndex = 9;
+            this.EditTermButton.TabIndex = 10;
             this.EditTermButton.UseVisualStyleBackColor = true;
             this.EditTermButton.Click += new System.EventHandler(this.EditTermButton_Click);
             // 
@@ -324,7 +411,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 495);
+            this.ClientSize = new System.Drawing.Size(1036, 495);
+            this.Controls.Add(this.EditTermButton);
+            this.Controls.Add(this.DeleteTermButton);
+            this.Controls.Add(this.AddTermButton);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -369,10 +459,16 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.DataGridView TermDataGrid;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button EditTermButton;
-        private System.Windows.Forms.Button DeleteTermButton;
+        private System.Windows.Forms.Button ShowButton;
+        private System.Windows.Forms.RadioButton SubjectsRadioButton;
+        private System.Windows.Forms.RadioButton TermsRadioButton;
         private System.Windows.Forms.Button AddTermButton;
+        private System.Windows.Forms.Button FilterButton;
+        private System.Windows.Forms.TextBox FilterTextBox;
+        private System.Windows.Forms.Button DeleteTermButton;
+        private System.Windows.Forms.Button EditTermButton;
+        private System.Windows.Forms.Label ShowedTableLabel;
+        private System.Windows.Forms.Button CurriculumButton;
     }
 }
 
