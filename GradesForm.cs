@@ -15,6 +15,7 @@ namespace journal
     {
         public int studentID;
         private int termID;
+        private int examinationID;
         public GradesForm()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace journal
         private void ShowScores()
         {
             MainForm form = new MainForm();
-            string commandText = "SELECT e.ID,s.SubjectName,e.score FROM examination e,subject s WHERE s.ID=e.subjectID AND e.termID=" + Convert.ToString(termID) + " AND e.studentID="+ Convert.ToString(studentID) +" ORDER BY SubjectName";
+            string commandText = "SELECT e.ID,s.SubjectName,e.score FROM examination e,subject s WHERE s.ID=e.subjectID AND e.termID=" + Convert.ToString(termID) + " AND e.studentID=" + Convert.ToString(studentID) + " ORDER BY SubjectName";
             OleDbDataAdapter dataAdapter = new OleDbDataAdapter(commandText, form.ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
             DataSet ds = new DataSet();  // создаем объект DataSet
             dataAdapter.Fill(ds, "examination"); // заполняем таблицу Books данными из базы данных 
@@ -49,12 +50,16 @@ namespace journal
         private void ShowSubjects(int termId)
         {
             MainForm form = new MainForm();
-            string commandText = "SELECT a.ID,s.SubjectName,a.exam FROM academic a,subject s WHERE s.ID=a.subjectID AND a.termID=" + Convert.ToString(termId) + " ORDER BY SubjectName";
+            string scoresString = "SELECT subjectId FROM examination WHERE termID = " + Convert.ToString(termId) + " AND studentID=" + Convert.ToString(studentID);
+            string commandText = "SELECT a.subjectID,s.SubjectName,a.exam FROM academic a,subject s ";
+            commandText += "WHERE s.ID=a.subjectID AND a.termID=" + Convert.ToString(termId);
+            commandText += " AND a.subjectID NOT IN (" + scoresString + ")";
+            commandText += " ORDER BY SubjectName";
             OleDbDataAdapter dataAdapter = new OleDbDataAdapter(commandText, form.ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
             DataSet ds = new DataSet();  // создаем объект DataSet
             dataAdapter.Fill(ds, "academic"); // заполняем таблицу Books данными из базы данных 
             SubjectsDataGrid.DataSource = ds.Tables[0].DefaultView;   // выводим данные о студентах в DataGrid на форме
-            SubjectsDataGrid.Columns["ID"].Visible = false; // 
+            SubjectsDataGrid.Columns["subjectID"].Visible = false;
             SubjectsDataGrid.Columns["SubjectName"].HeaderText = "Дисциплiна"; // задаём Наменование столбца
             SubjectsDataGrid.Columns["SubjectName"].Width = 200;  // ширина столбца  
             SubjectsDataGrid.Columns["exam"].HeaderText = "Екзамен"; // задаём Наменование столбца
@@ -86,15 +91,41 @@ namespace journal
         {
             if (SubjectsDataGrid.CurrentCell != null)
             {
-                int score = Convert.ToInt32(GradeTextBox.Text);
+                string score = GradeTextBox.Text;
                 int index = SubjectsDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
                 int subjectID = (int)SubjectsDataGrid[0, index].Value;
-                string commandText = "INSERT INTO examination (studentID, termID, subjectID, score) VALUES ("+studentID+","+termID+","+ subjectID + ","+score+")";
+                string commandText = "INSERT INTO examination (studentID, termID, subjectID, score) VALUES (" + Convert.ToString(studentID) + "," + Convert.ToString(termID) + "," + Convert.ToString(subjectID) + "," + score + ")";
                 ExecuteQuery(commandText);
                 ShowSubjects(termID);
                 ShowScores();
+                GradeTextBox.Clear();
             }
             else MessageBox.Show("Не обрана дисциплiна!", "Помилка!", MessageBoxButtons.OK);
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            if (ScoreDataGrid.CurrentCell != null)
+            {
+                if (EditGradeTextBox.Text !="")
+                {
+                    string score = EditGradeTextBox.Text;
+                    string commandText = "UPDATE examination SET score=" + score+" WHERE ID="+Convert.ToString(examinationID);
+                    ExecuteQuery(commandText);
+                    ShowScores();
+                    EditGradeTextBox.Clear();
+                }
+                else MessageBox.Show("Не задана оцiнка для редагування!", "Помилка!", MessageBoxButtons.OK);
+            }
+            else MessageBox.Show("Не обрана дисциплiна для редагування оцiнки!", "Помилка!", MessageBoxButtons.OK);
+        }
+
+        private void ScoreDataGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = ScoreDataGrid.CurrentCell.RowIndex;
+            string score = Convert.ToString(ScoreDataGrid[2, index].Value);
+            examinationID = (int)ScoreDataGrid[0, index].Value;
+            EditGradeTextBox.Text = score;
         }
     }
 }

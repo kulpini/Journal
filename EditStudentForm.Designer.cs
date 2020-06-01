@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditStudentForm));
             this.PhoneTextBox = new System.Windows.Forms.MaskedTextBox();
             this.BirthDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.TaxIdTextBox = new System.Windows.Forms.TextBox();
             this.SurnameTextBox = new System.Windows.Forms.TextBox();
             this.PassportTextBox = new System.Windows.Forms.TextBox();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
@@ -50,13 +49,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FIOLabel = new System.Windows.Forms.Label();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.TaxIdTextBox = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // PhoneTextBox
             // 
             this.PhoneTextBox.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PhoneTextBox.Location = new System.Drawing.Point(333, 223);
-            this.PhoneTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PhoneTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.PhoneTextBox.Mask = "+38(000)000-00-00";
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.Size = new System.Drawing.Size(180, 30);
@@ -70,15 +70,6 @@
             this.BirthDatePicker.Name = "BirthDatePicker";
             this.BirthDatePicker.Size = new System.Drawing.Size(200, 27);
             this.BirthDatePicker.TabIndex = 40;
-            // 
-            // TaxIdTextBox
-            // 
-            this.TaxIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TaxIdTextBox.Location = new System.Drawing.Point(333, 385);
-            this.TaxIdTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TaxIdTextBox.Name = "TaxIdTextBox";
-            this.TaxIdTextBox.Size = new System.Drawing.Size(349, 27);
-            this.TaxIdTextBox.TabIndex = 39;
             // 
             // SurnameTextBox
             // 
@@ -272,15 +263,24 @@
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // TaxIdTextBox
+            // 
+            this.TaxIdTextBox.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TaxIdTextBox.Location = new System.Drawing.Point(333, 383);
+            this.TaxIdTextBox.Mask = "0000000000";
+            this.TaxIdTextBox.Name = "TaxIdTextBox";
+            this.TaxIdTextBox.Size = new System.Drawing.Size(349, 27);
+            this.TaxIdTextBox.TabIndex = 43;
+            // 
             // EditStudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 497);
+            this.Controls.Add(this.TaxIdTextBox);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.BirthDatePicker);
-            this.Controls.Add(this.TaxIdTextBox);
             this.Controls.Add(this.SurnameTextBox);
             this.Controls.Add(this.PassportTextBox);
             this.Controls.Add(this.AddressTextBox);
@@ -299,7 +299,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FIOLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditStudentForm";
             this.Text = "Редагувати данi студента";
             this.ResumeLayout(false);
@@ -311,7 +311,6 @@
 
         public System.Windows.Forms.MaskedTextBox PhoneTextBox;
         public System.Windows.Forms.DateTimePicker BirthDatePicker;
-        public System.Windows.Forms.TextBox TaxIdTextBox;
         public System.Windows.Forms.TextBox SurnameTextBox;
         public System.Windows.Forms.TextBox PassportTextBox;
         public System.Windows.Forms.TextBox AddressTextBox;
@@ -330,5 +329,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label FIOLabel;
         private System.Windows.Forms.Button DeleteButton;
+        public System.Windows.Forms.MaskedTextBox TaxIdTextBox;
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -71,8 +72,22 @@ namespace journal
             TermDataGrid.Columns[fieldName].Width = 200;  // ширина столбца
         }
 
-        private void ShowStudents(string CommandText)
+        private void FilterStudents(string CommandText)
         {
+            OleDbDataAdapter dataAdapter = new OleDbDataAdapter(CommandText, ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
+            DataSet ds = new DataSet();  // создаем объект DataSet
+            dataAdapter.Fill(ds, "student"); // заполняем таблицу Books данными из базы данных 
+            StudentsDataGrid.DataSource = ds.Tables[0].DefaultView;   // выводим данные о студентах в DataGrid на форме
+            StudentsDataGrid.Columns["ID"].Visible = false; // 
+            StudentsDataGrid.Columns["StudentName"].HeaderText = "ПIБ студента"; // задаём Наменование столбца
+            StudentsDataGrid.Columns["StudentName"].Width = 350;  // ширина столбца 
+            StudentsDataGrid.Columns["RecordBook"].HeaderText = "№ залiкової"; // задаём Наменование столбца
+            StudentsDataGrid.Columns["RecordBook"].Width = 150;  // ширина столбца 
+        }
+
+        private void ShowStudents()
+        {
+            string CommandText = "SELECT ID, Surname & ' ' & Name & ' ' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
             OleDbDataAdapter dataAdapter = new OleDbDataAdapter(CommandText, ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
             DataSet ds = new DataSet();  // создаем объект DataSet
             dataAdapter.Fill(ds, "student"); // заполняем таблицу Books данными из базы данных 
@@ -98,21 +113,19 @@ namespace journal
                 string phone = newStudentForm.PhoneTextBox.Text;
                 string address = newStudentForm.AddressTextBox.Text;
                 string passport = newStudentForm.PassportTextBox.Text;
-                int taxId = int.Parse(newStudentForm.TaxIdTextBox.Text);
+                string taxId = newStudentForm.TaxIdTextBox.Text;
                 DateTime birthDate = newStudentForm.BirthDatePicker.Value;
                 CommandText = "INSERT INTO Student (Surname,Name,Patronymic,RecordBook,Phone,Address,BirthDate,Passport,taxId)";
                 CommandText += "VALUES ('" + surname + "','" + name + "','" + patronymic + "','" + recordbook + "','" + phone + "','";
-                CommandText += address + "','" + Convert.ToString(birthDate) + "','" + passport + "'," + Convert.ToString(taxId) + ")";
+                CommandText += address + "','" + Convert.ToString(birthDate) + "','" + passport + "','" + taxId + "')";
                 ExecuteQuery(CommandText);
-                CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
-                ShowStudents(CommandText);
+                ShowStudents();
             }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            string CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
-            ShowStudents(CommandText);
+            ShowStudents();
             ShowTerms();
             ShowedTableLabel.Text = "Перелiк семестрiв:";
         }
@@ -121,17 +134,16 @@ namespace journal
         {
             string CommandText = "DELETE FROM student WHERE ID =" + Convert.ToString(studentId);
             ExecuteQuery(CommandText);
-            CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
-            ShowStudents(CommandText);
+            ShowStudents();
         }
 
         private void FindButton_Click(object sender, EventArgs e)
         {
-            string CommandText = "SELECT ID, Surname & ' ' & Name & '' & Patronymic as StudentName, RecordBook FROM student";
+            string CommandText = "SELECT ID, Surname & ' ' & Name & ' ' & Patronymic as StudentName, RecordBook FROM student";
             if (FindTextBox.Text != "")
-                CommandText += " WHERE Surname LIKE '" + FindTextBox.Text + "'";
-            CommandText += " ORDER BY Surname"; 
-            ShowStudents(CommandText);
+                CommandText += " WHERE Surname LIKE '" + FindTextBox.Text + "%'";
+            CommandText += " ORDER BY Surname";
+            FilterStudents(CommandText);
         }
 
         private void DeleteStudentButton_Click(object sender, EventArgs e)
@@ -155,21 +167,24 @@ namespace journal
             {
                 int index = StudentsDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
                 int ID = (int)StudentsDataGrid[0, index].Value;
-                string CommandText;
+                string CommandText = "SELECT * FROM student WHERE ID=" + Convert.ToString(ID); 
                 EditStudentForm editForm = new EditStudentForm();
-                CommandText = "SELECT * FROM student WHERE ID=" + Convert.ToString(ID);
-                OleDbDataAdapter dataAdapter = new OleDbDataAdapter(CommandText, ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
-                DataSet ds = new DataSet();  // создаем объект DataSet
-                dataAdapter.Fill(ds, "student"); // заполняем таблицу Books данными из базы данных 
-                editForm.SurnameTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["Surname"].DefaultValue);
-                editForm.NameTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["Name"].DefaultValue);
-                editForm.PatronymicTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["Patronymic"].DefaultValue);
-                editForm.RecordTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["RecordBook"].DefaultValue);
-                editForm.PhoneTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["Phone"].DefaultValue);
-                editForm.AddressTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["Address"].DefaultValue);
-                editForm.BirthDatePicker.Text = Convert.ToString(ds.Tables["student"].Columns["BirthDate"].DefaultValue);
-                editForm.PassportTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["Passport"].DefaultValue);
-                editForm.TaxIdTextBox.Text = Convert.ToString(ds.Tables["student"].Columns["taxID"].DefaultValue);
+
+                OleDbConnection connection = new OleDbConnection(ConnectionString);
+                connection.Open();
+                OleDbCommand command = connection.CreateCommand();
+                command.CommandText = CommandText;
+                DbDataReader reader = command.ExecuteReader();
+                reader.Read();
+                editForm.SurnameTextBox.Text = Convert.ToString(reader["Surname"]);
+                editForm.NameTextBox.Text = Convert.ToString(reader["Name"]);
+                editForm.PatronymicTextBox.Text = Convert.ToString(reader["Patronymic"]);
+                editForm.RecordTextBox.Text = Convert.ToString(reader["RecordBook"]); 
+                editForm.PhoneTextBox.Text = Convert.ToString(reader["Phone"]);
+                editForm.AddressTextBox.Text =  Convert.ToString(reader["Address"]);
+                editForm.BirthDatePicker.Text =  Convert.ToString(reader["BirthDate"]);
+                editForm.PassportTextBox.Text =  Convert.ToString(reader["Passport"]);
+                editForm.TaxIdTextBox.Text =  Convert.ToString(reader["taxID"]);
                 editForm.ShowDialog();
                 if (editForm.DialogResult == DialogResult.Yes)
                 {
@@ -183,16 +198,15 @@ namespace journal
                     string recordbook = editForm.RecordTextBox.Text;
                     string phone = editForm.PhoneTextBox.Text;
                     string address = editForm.AddressTextBox.Text;
-                    string birthday = editForm.BirthDatePicker.Text;
+                    DateTime birthDate = editForm.BirthDatePicker.Value;
                     string passport = editForm.PassportTextBox.Text;
                     string taxid = editForm.TaxIdTextBox.Text;
                     CommandText = "UPDATE student SET ";
                     CommandText += "Surname = '" + surname + "', Name = '" + name + "', Patronymic ='" + patronymic + "', RecordBook = '" + recordbook;
-                    CommandText += "', Phone = '" + phone + "', Address = '" + address + "', BirthDate = '" + birthday + "', Passport = '" + passport + "', taxID =" + taxid;
+                    CommandText += "', Phone = '" + phone + "', Address = '" + address + "', BirthDate = '" + Convert.ToString(birthDate) + "', Passport = '" + passport + "', taxID ='" + taxid+"'";
                     CommandText += " WHERE ID=" + Convert.ToString(ID);
                     ExecuteQuery(CommandText);
-                    CommandText = "SELECT ID, Surname,Name,Patronymic, RecordBook FROM student";
-                    ShowStudents(CommandText);
+                    ShowStudents();
                 }
             }
             else MessageBox.Show("Не обрано жодного студента!", "Помилка!", MessageBoxButtons.OK);
@@ -316,6 +330,34 @@ namespace journal
                 gradeForm.ShowDialog();
             }
             else MessageBox.Show("Не обрано студента для внесення оцiнок!", "Помилка!", MessageBoxButtons.OK);
+        }
+
+        private void ReportButton_Click(object sender, EventArgs e)
+        {
+            if (StudentsDataGrid.CurrentCell != null)
+            {
+                int index = StudentsDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
+                int ID = (int)StudentsDataGrid[0, index].Value;
+                string studentName = Convert.ToString(StudentsDataGrid[0, index].Value);
+                ReportForm reportForm = new ReportForm { studentID = ID};
+                reportForm.StudentNameLabel.Text = studentName;
+                reportForm.ShowDialog();
+            }
+            else MessageBox.Show("Не обрано студента для формування виписки!", "Помилка!", MessageBoxButtons.OK);
+        }
+
+        private void AbsenceButton_Click(object sender, EventArgs e)
+        {
+            if (StudentsDataGrid.CurrentCell != null)
+            {
+                int index = StudentsDataGrid.CurrentCell.RowIndex;
+                int ID = (int)StudentsDataGrid[0, index].Value;
+                string studentName = Convert.ToString(StudentsDataGrid[1, index].Value);
+                AbsenceForm absenceForm = new AbsenceForm { studentID = ID};
+                absenceForm.StudentNameLabel.Text = studentName;
+                absenceForm.ShowDialog();
+            }
+            else MessageBox.Show("Не обрано студента для внесення даних!", "Помилка!", MessageBoxButtons.OK);
         }
     }
 }

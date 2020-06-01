@@ -43,35 +43,36 @@
             this.AcademicTermLabel.AutoSize = true;
             this.AcademicTermLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AcademicTermLabel.ForeColor = System.Drawing.Color.Maroon;
-            this.AcademicTermLabel.Location = new System.Drawing.Point(9, 7);
-            this.AcademicTermLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AcademicTermLabel.Location = new System.Drawing.Point(12, 9);
             this.AcademicTermLabel.Name = "AcademicTermLabel";
-            this.AcademicTermLabel.Size = new System.Drawing.Size(100, 17);
+            this.AcademicTermLabel.Size = new System.Drawing.Size(121, 20);
             this.AcademicTermLabel.TabIndex = 0;
             this.AcademicTermLabel.Text = "Дисциплiни ";
             // 
             // AcademicDataGrid
             // 
+            this.AcademicDataGrid.AllowUserToAddRows = false;
             this.AcademicDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AcademicDataGrid.Location = new System.Drawing.Point(9, 33);
-            this.AcademicDataGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AcademicDataGrid.Location = new System.Drawing.Point(12, 41);
+            this.AcademicDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AcademicDataGrid.Name = "AcademicDataGrid";
             this.AcademicDataGrid.RowHeadersVisible = false;
             this.AcademicDataGrid.RowHeadersWidth = 51;
             this.AcademicDataGrid.RowTemplate.Height = 24;
-            this.AcademicDataGrid.Size = new System.Drawing.Size(243, 435);
+            this.AcademicDataGrid.Size = new System.Drawing.Size(324, 535);
             this.AcademicDataGrid.TabIndex = 1;
             // 
             // SubjectListDataGrid
             // 
+            this.SubjectListDataGrid.AllowUserToAddRows = false;
             this.SubjectListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SubjectListDataGrid.Location = new System.Drawing.Point(312, 33);
-            this.SubjectListDataGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SubjectListDataGrid.Location = new System.Drawing.Point(416, 41);
+            this.SubjectListDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SubjectListDataGrid.Name = "SubjectListDataGrid";
             this.SubjectListDataGrid.RowHeadersVisible = false;
             this.SubjectListDataGrid.RowHeadersWidth = 51;
             this.SubjectListDataGrid.RowTemplate.Height = 24;
-            this.SubjectListDataGrid.Size = new System.Drawing.Size(241, 435);
+            this.SubjectListDataGrid.Size = new System.Drawing.Size(321, 535);
             this.SubjectListDataGrid.TabIndex = 2;
             // 
             // AddButton
@@ -79,10 +80,10 @@
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.Image = ((System.Drawing.Image)(resources.GetObject("AddButton.Image")));
-            this.AddButton.Location = new System.Drawing.Point(266, 80);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddButton.Location = new System.Drawing.Point(355, 98);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(28, 31);
+            this.AddButton.Size = new System.Drawing.Size(37, 38);
             this.AddButton.TabIndex = 3;
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -92,19 +93,19 @@
             this.DeleteButton.FlatAppearance.BorderSize = 0;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
-            this.DeleteButton.Location = new System.Drawing.Point(266, 133);
-            this.DeleteButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DeleteButton.Location = new System.Drawing.Point(355, 164);
+            this.DeleteButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(28, 31);
+            this.DeleteButton.Size = new System.Drawing.Size(37, 38);
             this.DeleteButton.TabIndex = 4;
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // AcademicListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 478);
+            this.ClientSize = new System.Drawing.Size(753, 588);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.SubjectListDataGrid);
@@ -112,7 +113,7 @@
             this.Controls.Add(this.AcademicTermLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AcademicListForm";

@@ -41,6 +41,7 @@
             // 
             // TermDataGrid
             // 
+            this.TermDataGrid.AllowUserToAddRows = false;
             this.TermDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TermDataGrid.Location = new System.Drawing.Point(21, 30);
             this.TermDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -76,6 +77,7 @@
             // 
             // SubjectDataGrid
             // 
+            this.SubjectDataGrid.AllowUserToAddRows = false;
             this.SubjectDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SubjectDataGrid.Location = new System.Drawing.Point(253, 30);
             this.SubjectDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -92,7 +94,7 @@
             this.EditSubjectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditSubjectButton.Image = ((System.Drawing.Image)(resources.GetObject("EditSubjectButton.Image")));
             this.EditSubjectButton.Location = new System.Drawing.Point(699, 30);
-            this.EditSubjectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EditSubjectButton.Margin = new System.Windows.Forms.Padding(4);
             this.EditSubjectButton.Name = "EditSubjectButton";
             this.EditSubjectButton.Size = new System.Drawing.Size(37, 34);
             this.EditSubjectButton.TabIndex = 13;
@@ -105,7 +107,7 @@
             this.CheckSubjectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CheckSubjectButton.Image = ((System.Drawing.Image)(resources.GetObject("CheckSubjectButton.Image")));
             this.CheckSubjectButton.Location = new System.Drawing.Point(699, 84);
-            this.CheckSubjectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CheckSubjectButton.Margin = new System.Windows.Forms.Padding(4);
             this.CheckSubjectButton.Name = "CheckSubjectButton";
             this.CheckSubjectButton.Size = new System.Drawing.Size(37, 34);
             this.CheckSubjectButton.TabIndex = 11;

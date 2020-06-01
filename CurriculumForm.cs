@@ -75,7 +75,7 @@ namespace journal
                     int index = SubjectDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
                     int ID = (int)SubjectDataGrid[0, index].Value;
                     bool exam = Convert.ToBoolean(SubjectDataGrid[2, index].Value);
-                    string commandText = "UPDATE academic SET exam =" + Convert.ToString(!exam) + " WHERE subjectID=" + Convert.ToString(ID);
+                    string commandText = "UPDATE academic SET exam =" + Convert.ToString(!exam) + " WHERE ID=" + Convert.ToString(ID);
                     ExecuteQuery(commandText);
                     ShowSubjects(termId);
                 }
