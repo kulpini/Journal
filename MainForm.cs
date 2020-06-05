@@ -87,7 +87,7 @@ namespace journal
 
         private void ShowStudents()
         {
-            string CommandText = "SELECT ID, Surname & ' ' & Name & ' ' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname";
+            string CommandText = "SELECT ID, Surname & ' ' & Name & ' ' & Patronymic as StudentName, RecordBook FROM student ORDER BY Surname,Name,Patronymic";
             OleDbDataAdapter dataAdapter = new OleDbDataAdapter(CommandText, ConnectionString);   //создаём адаптер данных и считываем данные помощью запроса
             DataSet ds = new DataSet();  // создаем объект DataSet
             dataAdapter.Fill(ds, "student"); // заполняем таблицу Books данными из базы данных 
@@ -338,8 +338,8 @@ namespace journal
             {
                 int index = StudentsDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
                 int ID = (int)StudentsDataGrid[0, index].Value;
-                string studentName = Convert.ToString(StudentsDataGrid[0, index].Value);
-                ReportForm reportForm = new ReportForm { studentID = ID};
+                string studentName = Convert.ToString(StudentsDataGrid[1, index].Value);
+                StudentReportForm reportForm = new StudentReportForm { studentId = ID};
                 reportForm.StudentNameLabel.Text = studentName;
                 reportForm.ShowDialog();
             }
@@ -358,6 +358,20 @@ namespace journal
                 absenceForm.ShowDialog();
             }
             else MessageBox.Show("Не обрано студента для внесення даних!", "Помилка!", MessageBoxButtons.OK);
+        }
+
+        private void TermReportButton_Click(object sender, EventArgs e)
+        {
+            if ((TermDataGrid.CurrentCell != null)&&(activeTable == "term"))
+            {
+                int index = TermDataGrid.CurrentCell.RowIndex;
+                int ID = (int)TermDataGrid[0, index].Value;
+                string termName = Convert.ToString(TermDataGrid[1, index].Value);
+                TermReportForm reportForm = new TermReportForm { termId = ID };
+                reportForm.TermNameLabel.Text = termName;
+                reportForm.ShowDialog();
+            }
+            else MessageBox.Show("Не обрано семестр для формування звiту!", "Помилка!", MessageBoxButtons.OK);
         }
     }
 }

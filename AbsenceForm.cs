@@ -53,8 +53,6 @@ namespace journal
             OleDbConnection connection = new OleDbConnection(form.ConnectionString);
             OleDbCommand command = new OleDbCommand(commandText,connection);
             connection.Open();
-            //cmd.CommandText = commandText;
-            //cmd.CommandType = CommandType.Text;
             int rowCount;
             rowCount = Convert.ToInt32(command.ExecuteScalar());
             if (rowCount == 0)

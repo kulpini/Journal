@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -38,6 +38,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.StudentsDataGrid = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.TermReportButton = new System.Windows.Forms.Button();
             this.AbsenceButton = new System.Windows.Forms.Button();
             this.CurriculumButton = new System.Windows.Forms.Button();
             this.RatingsButton = new System.Windows.Forms.Button();
@@ -78,7 +79,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(541, 495);
+            this.panel1.Size = new System.Drawing.Size(541, 613);
             this.panel1.TabIndex = 1;
             // 
             // panel5
@@ -128,7 +129,7 @@
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(10, 80, 10, 10);
-            this.panel4.Size = new System.Drawing.Size(539, 493);
+            this.panel4.Size = new System.Drawing.Size(539, 611);
             this.panel4.TabIndex = 4;
             // 
             // StudentsDataGrid
@@ -141,12 +142,13 @@
             this.StudentsDataGrid.Name = "StudentsDataGrid";
             this.StudentsDataGrid.RowHeadersVisible = false;
             this.StudentsDataGrid.RowHeadersWidth = 51;
-            this.StudentsDataGrid.Size = new System.Drawing.Size(519, 403);
+            this.StudentsDataGrid.Size = new System.Drawing.Size(519, 521);
             this.StudentsDataGrid.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.TermReportButton);
             this.panel2.Controls.Add(this.AbsenceButton);
             this.panel2.Controls.Add(this.CurriculumButton);
             this.panel2.Controls.Add(this.RatingsButton);
@@ -158,15 +160,28 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(541, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(210, 495);
+            this.panel2.Size = new System.Drawing.Size(263, 613);
             this.panel2.TabIndex = 2;
+            // 
+            // TermReportButton
+            // 
+            this.TermReportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TermReportButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TermReportButton.ForeColor = System.Drawing.Color.Maroon;
+            this.TermReportButton.Location = new System.Drawing.Point(94, 347);
+            this.TermReportButton.Name = "TermReportButton";
+            this.TermReportButton.Size = new System.Drawing.Size(162, 27);
+            this.TermReportButton.TabIndex = 9;
+            this.TermReportButton.Text = "Семестровий звiт";
+            this.TermReportButton.UseVisualStyleBackColor = true;
+            this.TermReportButton.Click += new System.EventHandler(this.TermReportButton_Click);
             // 
             // AbsenceButton
             // 
             this.AbsenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AbsenceButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AbsenceButton.ForeColor = System.Drawing.Color.Maroon;
-            this.AbsenceButton.Location = new System.Drawing.Point(16, 452);
+            this.AbsenceButton.Location = new System.Drawing.Point(40, 563);
             this.AbsenceButton.Name = "AbsenceButton";
             this.AbsenceButton.Size = new System.Drawing.Size(162, 32);
             this.AbsenceButton.TabIndex = 8;
@@ -179,7 +194,7 @@
             this.CurriculumButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CurriculumButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CurriculumButton.ForeColor = System.Drawing.Color.Maroon;
-            this.CurriculumButton.Location = new System.Drawing.Point(16, 375);
+            this.CurriculumButton.Location = new System.Drawing.Point(40, 486);
             this.CurriculumButton.Name = "CurriculumButton";
             this.CurriculumButton.Size = new System.Drawing.Size(162, 32);
             this.CurriculumButton.TabIndex = 7;
@@ -192,7 +207,7 @@
             this.RatingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RatingsButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RatingsButton.ForeColor = System.Drawing.Color.Maroon;
-            this.RatingsButton.Location = new System.Drawing.Point(16, 413);
+            this.RatingsButton.Location = new System.Drawing.Point(40, 524);
             this.RatingsButton.Name = "RatingsButton";
             this.RatingsButton.Size = new System.Drawing.Size(162, 32);
             this.RatingsButton.TabIndex = 6;
@@ -205,11 +220,11 @@
             this.ReportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReportButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ReportButton.ForeColor = System.Drawing.Color.Maroon;
-            this.ReportButton.Location = new System.Drawing.Point(16, 269);
+            this.ReportButton.Location = new System.Drawing.Point(16, 314);
             this.ReportButton.Name = "ReportButton";
             this.ReportButton.Size = new System.Drawing.Size(162, 27);
             this.ReportButton.TabIndex = 5;
-            this.ReportButton.Text = "Виписка";
+            this.ReportButton.Text = "Виписка по студенту";
             this.ReportButton.UseVisualStyleBackColor = true;
             this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
@@ -218,7 +233,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.ForeColor = System.Drawing.Color.Maroon;
-            this.button1.Location = new System.Drawing.Point(16, 236);
+            this.button1.Location = new System.Drawing.Point(16, 224);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(162, 27);
             this.button1.TabIndex = 4;
@@ -230,7 +245,7 @@
             this.EditStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditStudentButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.EditStudentButton.ForeColor = System.Drawing.Color.Maroon;
-            this.EditStudentButton.Location = new System.Drawing.Point(16, 175);
+            this.EditStudentButton.Location = new System.Drawing.Point(16, 148);
             this.EditStudentButton.Name = "EditStudentButton";
             this.EditStudentButton.Size = new System.Drawing.Size(162, 27);
             this.EditStudentButton.TabIndex = 3;
@@ -243,7 +258,7 @@
             this.DeleteStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteStudentButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DeleteStudentButton.ForeColor = System.Drawing.Color.Maroon;
-            this.DeleteStudentButton.Location = new System.Drawing.Point(16, 131);
+            this.DeleteStudentButton.Location = new System.Drawing.Point(16, 104);
             this.DeleteStudentButton.Name = "DeleteStudentButton";
             this.DeleteStudentButton.Size = new System.Drawing.Size(162, 27);
             this.DeleteStudentButton.TabIndex = 2;
@@ -256,7 +271,7 @@
             this.AddStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddStudentButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddStudentButton.ForeColor = System.Drawing.Color.Maroon;
-            this.AddStudentButton.Location = new System.Drawing.Point(16, 88);
+            this.AddStudentButton.Location = new System.Drawing.Point(16, 61);
             this.AddStudentButton.Name = "AddStudentButton";
             this.AddStudentButton.Size = new System.Drawing.Size(162, 27);
             this.AddStudentButton.TabIndex = 1;
@@ -269,9 +284,9 @@
             this.panel3.Controls.Add(this.panel7);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(751, 0);
+            this.panel3.Location = new System.Drawing.Point(804, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(255, 495);
+            this.panel3.Size = new System.Drawing.Size(286, 613);
             this.panel3.TabIndex = 3;
             // 
             // panel7
@@ -281,27 +296,27 @@
             this.panel7.Location = new System.Drawing.Point(0, 105);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
-            this.panel7.Size = new System.Drawing.Size(255, 390);
+            this.panel7.Size = new System.Drawing.Size(286, 508);
             this.panel7.TabIndex = 8;
             // 
             // TermDataGrid
             // 
             this.TermDataGrid.AllowUserToAddRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TermDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TermDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.TermDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TermDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TermDataGrid.Location = new System.Drawing.Point(10, 5);
             this.TermDataGrid.Name = "TermDataGrid";
             this.TermDataGrid.RowHeadersVisible = false;
             this.TermDataGrid.RowHeadersWidth = 51;
-            this.TermDataGrid.Size = new System.Drawing.Size(235, 375);
+            this.TermDataGrid.Size = new System.Drawing.Size(266, 493);
             this.TermDataGrid.TabIndex = 7;
             // 
             // panel6
@@ -315,7 +330,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(255, 105);
+            this.panel6.Size = new System.Drawing.Size(286, 105);
             this.panel6.TabIndex = 7;
             // 
             // ShowedTableLabel
@@ -395,7 +410,7 @@
             this.AddTermButton.FlatAppearance.BorderSize = 0;
             this.AddTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddTermButton.Image = ((System.Drawing.Image)(resources.GetObject("AddTermButton.Image")));
-            this.AddTermButton.Location = new System.Drawing.Point(1005, 97);
+            this.AddTermButton.Location = new System.Drawing.Point(1092, 104);
             this.AddTermButton.Name = "AddTermButton";
             this.AddTermButton.Size = new System.Drawing.Size(28, 28);
             this.AddTermButton.TabIndex = 8;
@@ -407,7 +422,7 @@
             this.DeleteTermButton.FlatAppearance.BorderSize = 0;
             this.DeleteTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteTermButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteTermButton.Image")));
-            this.DeleteTermButton.Location = new System.Drawing.Point(1005, 143);
+            this.DeleteTermButton.Location = new System.Drawing.Point(1092, 138);
             this.DeleteTermButton.Name = "DeleteTermButton";
             this.DeleteTermButton.Size = new System.Drawing.Size(28, 28);
             this.DeleteTermButton.TabIndex = 9;
@@ -419,7 +434,7 @@
             this.EditTermButton.FlatAppearance.BorderSize = 0;
             this.EditTermButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditTermButton.Image = ((System.Drawing.Image)(resources.GetObject("EditTermButton.Image")));
-            this.EditTermButton.Location = new System.Drawing.Point(1005, 185);
+            this.EditTermButton.Location = new System.Drawing.Point(1092, 172);
             this.EditTermButton.Name = "EditTermButton";
             this.EditTermButton.Size = new System.Drawing.Size(28, 28);
             this.EditTermButton.TabIndex = 10;
@@ -430,7 +445,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 495);
+            this.ClientSize = new System.Drawing.Size(1132, 613);
             this.Controls.Add(this.EditTermButton);
             this.Controls.Add(this.DeleteTermButton);
             this.Controls.Add(this.AddTermButton);
@@ -489,6 +504,7 @@
         private System.Windows.Forms.Label ShowedTableLabel;
         private System.Windows.Forms.Button CurriculumButton;
         private System.Windows.Forms.Button AbsenceButton;
+        private System.Windows.Forms.Button TermReportButton;
     }
 }
 
