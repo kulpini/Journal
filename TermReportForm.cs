@@ -17,7 +17,6 @@ namespace journal
     {
         int[] subjectID;
         public int termId;
-        private Bitmap memoryImage;
         public TermReportForm()
         {
             InitializeComponent();

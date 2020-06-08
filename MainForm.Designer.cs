@@ -43,7 +43,7 @@
             this.CurriculumButton = new System.Windows.Forms.Button();
             this.RatingsButton = new System.Windows.Forms.Button();
             this.ReportButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CharacteristicButton = new System.Windows.Forms.Button();
             this.EditStudentButton = new System.Windows.Forms.Button();
             this.DeleteStudentButton = new System.Windows.Forms.Button();
             this.AddStudentButton = new System.Windows.Forms.Button();
@@ -153,7 +153,7 @@
             this.panel2.Controls.Add(this.CurriculumButton);
             this.panel2.Controls.Add(this.RatingsButton);
             this.panel2.Controls.Add(this.ReportButton);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.CharacteristicButton);
             this.panel2.Controls.Add(this.EditStudentButton);
             this.panel2.Controls.Add(this.DeleteStudentButton);
             this.panel2.Controls.Add(this.AddStudentButton);
@@ -228,17 +228,18 @@
             this.ReportButton.UseVisualStyleBackColor = true;
             this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
-            // button1
+            // CharacteristicButton
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.ForeColor = System.Drawing.Color.Maroon;
-            this.button1.Location = new System.Drawing.Point(16, 224);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 27);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Характеристика";
-            this.button1.UseVisualStyleBackColor = true;
+            this.CharacteristicButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CharacteristicButton.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CharacteristicButton.ForeColor = System.Drawing.Color.Maroon;
+            this.CharacteristicButton.Location = new System.Drawing.Point(16, 224);
+            this.CharacteristicButton.Name = "CharacteristicButton";
+            this.CharacteristicButton.Size = new System.Drawing.Size(162, 27);
+            this.CharacteristicButton.TabIndex = 4;
+            this.CharacteristicButton.Text = "Характеристика";
+            this.CharacteristicButton.UseVisualStyleBackColor = true;
+            this.CharacteristicButton.Click += new System.EventHandler(this.CharacteristicButton_Click);
             // 
             // EditStudentButton
             // 
@@ -454,6 +455,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Журнал облiку студентiв";
@@ -479,7 +481,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button RatingsButton;
         private System.Windows.Forms.Button ReportButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CharacteristicButton;
         private System.Windows.Forms.Button EditStudentButton;
         private System.Windows.Forms.Button DeleteStudentButton;
         private System.Windows.Forms.Button AddStudentButton;

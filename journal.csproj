@@ -64,6 +64,12 @@
     <Compile Include="AddTermForm.Designer.cs">
       <DependentUpon>AddTermForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CharacteristicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CharacteristicForm.Designer.cs">
+      <DependentUpon>CharacteristicForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurriculumForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddTermForm.resx">
       <DependentUpon>AddTermForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CharacteristicForm.resx">
+      <DependentUpon>CharacteristicForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CurriculumForm.resx">
       <DependentUpon>CurriculumForm.cs</DependentUpon>

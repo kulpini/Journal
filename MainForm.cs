@@ -373,5 +373,19 @@ namespace journal
             }
             else MessageBox.Show("Не обрано семестр для формування звiту!", "Помилка!", MessageBoxButtons.OK);
         }
+
+        private void CharacteristicButton_Click(object sender, EventArgs e)
+        {
+            if (StudentsDataGrid.CurrentCell != null)
+            {
+                int index = StudentsDataGrid.CurrentCell.RowIndex;   // № по порядку в таблице представления
+                int ID = (int)StudentsDataGrid[0, index].Value;
+                string studentName = Convert.ToString(StudentsDataGrid[1, index].Value);
+                CharacteristicForm characteristicForm = new CharacteristicForm { studentId = ID };
+                characteristicForm.StudentNameLabel.Text = studentName;
+                characteristicForm.ShowDialog();
+            }
+            else MessageBox.Show("Не обрано студента !", "Помилка!", MessageBoxButtons.OK);
+        }
     }
 }
